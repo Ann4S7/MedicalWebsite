@@ -1,0 +1,87 @@
+body {
+    font-family: serif;
+    color: DarkSlateGray;
+    background-color: LightGoldenRodYellow;
+}
+
+a:link {
+    text-decoration: none;
+    color: DarkSlateGray;
+}
+
+a:visited {
+    text-decoration: none;
+    color: DarkSlateGray;
+}
+
+a:hover {
+    text-decoration: none;
+    color: DarkSlateGray;
+    border-bottom: 2px solid DarkSlateGray;
+}
+
+a:active {
+    text-decoration: none;
+    color: DarkSlateGray;
+}
+
+#main-header {
+    display: flex;
+    background-color: LightSteelBlue;
+    color: DarkRed;
+    font-size: 50px;
+    font-weight: bold;
+    padding: 20px 300px 20px 300px;
+}
+
+.motto {
+    color: White;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: normal;
+    padding-left: 30px;
+}
+
+nav {
+    background-color: DarkSlateBlue;
+    height-min: 50px;
+    width: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    color: White;
+    padding: 10px 300px 10px 300px;
+}
+
+.main-A:link {
+    color: White;
+}
+
+.main-A:visited {
+    color: White;
+}
+
+.main-A:hover {
+    color: White;
+    padding-bottom: 3px;
+	border-bottom: 2px solid white;
+}
+
+.main-A:active {
+    color: White;
+}
+
+#main-content {
+    padding: 30px 300px 30px 300px;
+}
+
+#main {
+    float: left;
+    width: 70%;
+}
+
+#right-menu {
+    display: flex;
+    background-color: White;
+    float: right;
+    padding: 10px;
+}

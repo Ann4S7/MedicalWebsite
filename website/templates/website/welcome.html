@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load static %}
+#bez tego tagu nie wyświetla image
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <div id="main-content">
+        <main id="main">
+            {% if user.is_active %}
+                <h1>Welcome <span style="color: DarkRed">{{request.user.username}}</span> to the eClinic!</h1>
+                <p>
+                    This is a website of our clinic. You can book the services which we provide.
+                </p>
+                <p>
+                    {{message}}
+                </p>
+                <p>
+                    Available visits: {{visits_num}}
+                </p>
+                {% if visits_num != 0 %}
+                    <h2>Visits</h2>
+                    <ul>
+                        {% for visit in visits_available %}
+                            <li>
+                                <a href="{% url 'details' visit.id %}">
+                                    {{visit.doctor}}
+                                </a>
+                            </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% else %}
+                <h1>Welcome to the eClinic!</h1>
+                <p>
+                    This is a website of our clinic. Login to book the services which we provide.
+                </p>
+                <br>
+                <p>
+                    <a href="{% url 'doctors' %}">
+                        <span style="font-size: 20px">Click here to meet our team!</span>
+                    </a>
+                </p>
+            {% endif %}
+        </main>
+        {% if user.is_active %}
+            <aside id="right-menu">
+                <a href="{% url 'doctors' %}">
+                    <span style="font-size: 20px; text-transform: uppercase;">Our team</span>
+                </a>
+            </aside>
+        {% endif %}
+    </div>
+
+{% endblock %}

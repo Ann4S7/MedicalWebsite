@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+
+{% block title %}Unsuccessful registration{% endblock %}
+
+{% block content %}
+    <div id="main-content">
+        <p>Registration failed.</p>
+        <p>
+            <a href="{% url 'registration' %}">Try again.</a>
+        </p>
+    </div>
+{% endblock %}

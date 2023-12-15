@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Doctors{% endblock %}
+
+{% block content %}
+    <div id="main-content">
+        <h2>
+            Our doctors:
+        </h2>
+        <ul>
+            {% for doctor in doctors %}
+                <li>
+                    {{doctor}} ({{doctor.specialization}})
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
