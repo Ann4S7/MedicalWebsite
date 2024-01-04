@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect, render, reverse
+from django.shortcuts import get_object_or_404, redirect, render, reverse, HttpResponse
 
 from visits.models import Visit, Doctor
 
@@ -13,7 +13,8 @@ def doctors_list(request):
                   {"doctors": Doctor.objects.all()})
 
 
-def reservation(visit):
+def reservation(request, id):
+    visit = get_object_or_404(Visit, pk=id)
     visit.available = False
-    visit.save(['available'])
+    visit.save()
     return redirect(reverse('welcome'))
