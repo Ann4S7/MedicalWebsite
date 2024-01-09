@@ -2,9 +2,12 @@ from django.shortcuts import get_object_or_404, redirect, render, reverse, HttpR
 
 from visits.models import Visit, Doctor
 
+from datetime import datetime
+
 
 def details(request, id):
     visit = get_object_or_404(Visit, pk=id)
+    out_of_date(visit)
     return render(request, "visits/details.html", {"visit": visit})
 
 
@@ -13,8 +16,19 @@ def doctors_list(request):
                   {"doctors": Doctor.objects.all()})
 
 
+def out_of_date(visit):
+    visit_datetime = datetime.combine(visit.date, visit.start_time)
+    if visit_datetime < datetime.now():
+        visit.available = False
+        visit.save()
+
+
 def reservation(request, id):
     visit = get_object_or_404(Visit, pk=id)
-    visit.available = False
-    visit.save()
-    return redirect(reverse('welcome'))
+    out_of_date(visit)
+    if visit.available is True:
+        visit.available = False
+        visit.save()
+        return redirect(reverse('welcome'))
+    else:
+        return render(request, "visits/unavailable_visit.html")

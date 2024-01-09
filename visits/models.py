@@ -1,6 +1,6 @@
 from django.db import models
 
-from datetime import date, time
+from datetime import datetime, time
 
 
 class Location(models.Model):
