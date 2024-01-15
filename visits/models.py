@@ -33,5 +33,8 @@ class Visit(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     available = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ["date", "start_time"]
+
     def __str__(self):
         return f"Visit doctor {self.doctor} at {self.start_time} on {self.date}."
