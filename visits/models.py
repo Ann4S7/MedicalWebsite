@@ -1,6 +1,8 @@
 from django.db import models
 
-from datetime import datetime, time
+from django.contrib.auth.models import User
+
+from datetime import time
 
 
 class Location(models.Model):
@@ -32,6 +34,7 @@ class Visit(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     available = models.BooleanField(default=True)
+    patient = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["date", "start_time"]
