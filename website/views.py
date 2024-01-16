@@ -16,7 +16,7 @@ def welcome(request):
                   {"message": "Check the available visits on our page.",
                    "visits_all": Visit.objects.all(),
                    "visits_available": Visit.objects.filter(available=True),
-                   "visits_num": Visit.objects.filter(available=True).count(),
+                   "visits_available_num": Visit.objects.filter(available=True).count(),
                    "visits_patient": Visit.objects.filter(patient=request.user)})
 
 

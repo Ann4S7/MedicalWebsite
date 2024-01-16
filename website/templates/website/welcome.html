@@ -17,9 +17,9 @@
                     {{message}}
                 </p>
                 <p>
-                    Available visits: {{visits_num}}
+                    Available visits: {{visits_available_num}}
                 </p>
-                {% if visits_num != 0 %}
+                {% if visits_available_num != 0 %}
                     <h2>Visits</h2>
                     <ul>
                         {% for visit in visits_available %}
@@ -61,6 +61,9 @@
             <aside id="right-menu">
                 <a href="{% url 'doctors' %}">
                     <span style="font-size: 20px; text-transform: uppercase;">Our team</span>
+                </a>
+                <a href="{% url 'calendar' %}">
+                    <span style="font-size: 20px; text-transform: uppercase;">Calendar</span>
                 </a>
             </aside>
         {% endif %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Visits{% endblock %}
+
+{% block content %}
+    <div id="main-content">
+        <main id="main">
+            {% if user.is_active %}
+                {% if visits_available_num != 0 %}
+                    <h2>Visits</h2>
+                    <ul>
+                        {% for visit in visits_available %}
+                            <li>
+                                <a href="{% url 'details' visit.id %}">
+                                    {{visit.doctor}}
+                                </a>
+                            </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endif %}
+        </main>
+        {% if user.is_active %}
+        <aside id="right-menu">
+            <a href="{% url 'doctors' %}">
+                <span style="font-size: 20px; text-transform: uppercase;">Our team</span>
+            </a>
+            <a href="{% url 'calendar' %}">
+                <span style="font-size: 20px; text-transform: uppercase;">Calendar</span>
+            </a>
+        </aside>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -32,3 +32,8 @@ def reservation(request, id):
         return redirect(reverse('welcome'))
     else:
         return render(request, "visits/unavailable_visit.html")
+
+
+def calendar(request):
+    return render(request, "visits/calendar.html", {"visits_available": Visit.objects.filter(available=True),
+                                                   "visits_available_num": Visit.objects.filter(available=True).count()})
