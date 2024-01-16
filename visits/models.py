@@ -25,7 +25,7 @@ class Doctor(models.Model):
     specialization = models.ForeignKey(Specialization, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.doctor} - {self.specialization}"
+        return f"{self.doctor} ({self.specialization})"
 
 
 class Visit(models.Model):
@@ -40,4 +40,4 @@ class Visit(models.Model):
         ordering = ["date", "start_time"]
 
     def __str__(self):
-        return f"Visit doctor {self.doctor} at {self.start_time} on {self.date}."
+        return f"{self.date} ({self.start_time}) - {self.doctor}"

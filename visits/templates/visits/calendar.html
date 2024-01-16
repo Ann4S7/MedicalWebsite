@@ -12,7 +12,7 @@
                         {% for visit in visits_available %}
                             <li>
                                 <a href="{% url 'details' visit.id %}">
-                                    {{visit.doctor}}
+                                    {{visit}}
                                 </a>
                             </li>
                     {% endfor %}
