@@ -10,7 +10,7 @@
                 <p>
                     The visit has been scheduled on {{visit.date}} at {{visit.start_time}} in <strong>{{visit.location}}</strong>
                 </p>
-                <a class="btn btn-primary" href="{% url 'reservation' visit.id %}">Reservation</a>
+                <a class="btn btn-primary" href="{% url 'cancel' visit.id %}">Cancel</a>
             {% else %}
                 <p>Login to check the details.</p>
             {% endif %}
