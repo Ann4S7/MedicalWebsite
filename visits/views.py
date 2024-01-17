@@ -27,6 +27,7 @@ def reservation(request, id):
     out_of_date(visit)
     if visit.available is True:
         visit.available = False
+        visit.patient = request.user
         visit.save()
         return redirect(reverse('welcome'))
     else:
