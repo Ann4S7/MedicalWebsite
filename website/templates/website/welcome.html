@@ -14,23 +14,11 @@
                     This is a website of our clinic. You can book the services which we provide.
                 </p>
                 <p>
-                    {{message}}
+                    Check the available visits on our page.
                 </p>
                 <p>
                     Available visits: {{visits_available_num}}
                 </p>
-                {% if visits_available_num != 0 %}
-                    <h2>Visits</h2>
-                    <ul>
-                        {% for visit in visits_available %}
-                            <li>
-                                <a href="{% url 'details' visit.id %}">
-                                    {{visit}}
-                                </a>
-                            </li>
-                    {% endfor %}
-                    </ul>
-                {% endif %}
                 {% if visits_patient != 0 %}
                     <h2>Your visits</h2>
                     <ul>

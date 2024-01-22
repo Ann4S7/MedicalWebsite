@@ -12,12 +12,12 @@ from datetime import datetime
 def welcome(request):
     for visit in Visit.objects.all():
         out_of_date(visit)
-    return render(request, "website/welcome.html",
-                  {"message": "Check the available visits on our page.",
-                   "visits_all": Visit.objects.all(),
-                   "visits_available": Visit.objects.filter(available=True),
-                   "visits_available_num": Visit.objects.filter(available=True).count(),
-                   "visits_patient": Visit.objects.filter(patient=request.user)})
+    if request.user.is_active:
+        return render(request, "website/welcome.html",
+                      {"visits_available_num": Visit.objects.filter(available=True).count(),
+                       "visits_patient": Visit.objects.filter(patient=request.user)})
+    else:
+        return render(request, "website/welcome.html")
 
 
 def about(request):
