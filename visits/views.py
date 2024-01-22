@@ -7,7 +7,6 @@ from datetime import datetime
 
 def details(request, id):
     visit = get_object_or_404(Visit, pk=id)
-    out_of_date(visit)
     return render(request, "visits/details.html", {"visit": visit})
 
 
@@ -28,6 +27,7 @@ def reservation(request, id):
     out_of_date(visit)
     if visit.available is True:
         visit.available = False
+        visit.patient = request.user
         visit.save()
         return redirect(reverse('welcome'))
     else:
@@ -35,5 +35,19 @@ def reservation(request, id):
 
 
 def calendar(request):
-    return render(request, "visits/calendar.html", {"visits_available": Visit.objects.filter(available=True),
-                                                   "visits_available_num": Visit.objects.filter(available=True).count()})
+    return render(request, "visits/calendar.html",
+                  {"visits_available": Visit.objects.filter(available=True),
+                   "visits_available_num": Visit.objects.filter(available=True).count()})
+
+
+def schedule_details(request, id):
+    visit = get_object_or_404(Visit, pk=id)
+    return render(request, "visits/schedule_details.html", {"visit": visit})
+
+
+def cancel_visit(request, id):
+    visit = get_object_or_404(Visit, pk=id)
+    visit.available = True
+    visit.patient = None
+    visit.save()
+    return redirect(reverse('welcome'))

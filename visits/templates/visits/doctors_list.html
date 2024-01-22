@@ -4,15 +4,27 @@
 
 {% block content %}
     <div id="main-content">
-        <h2>
-            Our doctors:
-        </h2>
-        <ul>
-            {% for doctor in doctors %}
-                <li>
-                    {{doctor}} ({{doctor.specialization}})
-                </li>
-            {% endfor %}
-        </ul>
+        <main id="main">
+            <h2>
+                Our doctors:
+            </h2>
+            <ul>
+                {% for doctor in doctors %}
+                    <li>
+                        {{doctor}} ({{doctor.specialization}})
+                    </li>
+                {% endfor %}
+            </ul>
+        </main>
+        {% if user.is_active %}
+            <aside id="right-menu">
+                <a href="{% url 'doctors' %}">
+                    <span style="font-size: 20px; text-transform: uppercase;">Our team</span>
+                </a>
+                <a href="{% url 'calendar' %}">
+                    <span style="font-size: 20px; text-transform: uppercase;">Calendar</span>
+                </a>
+            </aside>
+        {% endif %}
     </div>
 {% endblock %}
