@@ -13,11 +13,7 @@ def welcome(request):
     for visit in Visit.objects.all():
         out_of_date(visit)
     return render(request, "website/welcome.html",
-                  {"message": "Check the available visits on our page.",
-                   "visits_all": Visit.objects.all(),
-                   "visits_available": Visit.objects.filter(available=True),
-                   "visits_available_num": Visit.objects.filter(available=True).count(),
-                   "visits_patient": Visit.objects.filter(patient=request.user)})
+                  {"visits_patient": Visit.objects.filter(patient=request.user)})
 
 
 def about(request):
