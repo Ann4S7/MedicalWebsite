@@ -1,87 +1,115 @@
 body {
-    font-family: serif;
-    color: DarkSlateGray;
-    background-color: LightGoldenRodYellow;
+    font-family: Helvetica, sans-serif;
+    color: Black;
+    background-color: White;
 }
 
-a:link {
-    text-decoration: none;
-    color: DarkSlateGray;
-}
-
-a:visited {
-    text-decoration: none;
-    color: DarkSlateGray;
-}
-
-a:hover {
-    text-decoration: none;
-    color: DarkSlateGray;
-    border-bottom: 2px solid DarkSlateGray;
-}
-
-a:active {
-    text-decoration: none;
-    color: DarkSlateGray;
-}
-
-#main-header {
+header {
     display: flex;
-    background-color: LightSteelBlue;
-    color: DarkRed;
+    background: LightSteelBlue;
+    padding: 20px 100px 20px 100px;
+}
+
+.logo {
+    color: DarkSlateBlue;
     font-size: 50px;
     font-weight: bold;
-    padding: 20px 300px 20px 300px;
 }
 
 .motto {
     color: White;
     font-style: italic;
     font-size: 20px;
-    font-weight: normal;
     padding-left: 30px;
 }
 
 nav {
-    background-color: DarkSlateBlue;
+    background-image: linear-gradient(90deg, DarkSlateBlue, LightSteelBlue);
     height-min: 50px;
     width: 100%;
     font-size: 25px;
     font-weight: bold;
     color: White;
-    padding: 10px 300px 10px 300px;
+    padding: 10px 100px 10px 100px;
 }
 
-.main-A:link {
+nav a:link {
     color: White;
 }
 
-.main-A:visited {
+nav a:visited {
     color: White;
 }
 
-.main-A:hover {
+nav a:hover {
     color: White;
     padding-bottom: 3px;
 	border-bottom: 2px solid white;
 }
 
-.main-A:active {
+nav a:active {
     color: White;
 }
 
-#main-content {
-    padding: 30px 300px 30px 300px;
-}
-
-#main {
-    float: left;
-    width: 70%;
-}
-
-#right-menu {
-    display: flex;
-    background-color: White;
+main {
     float: right;
-    padding: 10px;
+    width: 70%;
+    padding-top: 20px;
+}
+
+a:link {
+    text-decoration: none;
+    color: Black;
+}
+
+a:visited {
+    text-decoration: none;
+    color: Black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: Black;
+    border-bottom: 2px solid Black;
+}
+
+a:active {
+    text-decoration: none;
+    color: Black;
+}
+
+aside {
+    display: flex;
+    background-image: linear-gradient(45deg, LightSteelBlue, White);
+    float: left;
+    padding: 30px 30px 30px 100px;
+}
+
+aside a:link {
+    text-decoration: none;
+    color: Black;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+aside a:visited {
+    text-decoration: none;
+    color: Black;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+aside a:hover {
+    text-decoration: none;
+    color: Black;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid Black;
+}
+
+aside a:active {
+    text-decoration: none;
+    color: Black;
+    font-size: 20px;
+    text-transform: uppercase;
 }
