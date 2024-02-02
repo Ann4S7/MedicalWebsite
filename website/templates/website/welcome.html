@@ -16,17 +16,20 @@
                 <p>
                     Check the available visits on our page.
                 </p>
-                {% if visits_patient != 0 %}
-                    <h2>Your visits</h2>
+                <br>
+                <h3>Your visits</h3>
+                {% if visits_patient_upcoming.count != 0 %}
                     <ul>
-                        {% for visit in visits_patient %}
+                        {% for visit in visits_patient_upcoming %}
                             <li>
                                 <a href="{% url 'schedule_details' visit.id %}">
                                     {{visit}}
                                 </a>
                             </li>
-                    {% endfor %}
+                        {% endfor %}
                     </ul>
+                {% else %}
+                    <p>You have no visits currently.</p>
                 {% endif %}
 
             {% else %}

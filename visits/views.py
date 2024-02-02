@@ -18,15 +18,14 @@ def doctors_list(request):
 def out_of_date(visit):
     visit_datetime = datetime.combine(visit.date, visit.start_time)
     if visit_datetime < datetime.now():
-        visit.available = False
+        visit.past = True
         visit.save()
 
 
 def reservation(request, id):
     visit = get_object_or_404(Visit, pk=id)
     out_of_date(visit)
-    if visit.available is True:
-        visit.available = False
+    if visit.patient is None:
         visit.patient = request.user
         visit.save()
         return redirect(reverse('welcome'))
@@ -36,8 +35,7 @@ def reservation(request, id):
 
 def calendar(request):
     return render(request, "visits/calendar.html",
-                  {"visits_available": Visit.objects.filter(available=True),
-                   "visits_available_num": Visit.objects.filter(available=True).count()})
+                  {"visits_available": Visit.objects.filter(past=False, patient=None)})
 
 
 def schedule_details(request, id):
@@ -47,7 +45,6 @@ def schedule_details(request, id):
 
 def cancel_visit(request, id):
     visit = get_object_or_404(Visit, pk=id)
-    visit.available = True
     visit.patient = None
     visit.save()
     return redirect(reverse('welcome'))

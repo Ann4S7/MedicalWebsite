@@ -33,7 +33,7 @@ class Visit(models.Model):
     start_time = models.TimeField(default=time(8))
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    available = models.BooleanField(default=True)
+    past = models.BooleanField(default=False)
     patient = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     class Meta:
