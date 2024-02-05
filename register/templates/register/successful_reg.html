@@ -4,10 +4,18 @@
 {% block title %}Successful registration{% endblock %}
 
 {% block content %}
-    <div id="main-content">
+    <main>
         <p>Registration passed.</p>
         <p>
             <a href="{% url 'welcome' %}">Home</a>
         </p>
-    </div>
+    </main>
+    <aside>
+        {% if user.is_active %}
+            <a href="{% url 'calendar' %}">Calendar</a>
+            <a href="{% url 'doctors' %}">Our team</a>
+        {% else %}
+            <a href="{% url 'doctors' %}">Our team</a>
+        {% endif %}
+    </aside>
 {% endblock %}

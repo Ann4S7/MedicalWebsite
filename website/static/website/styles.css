@@ -82,7 +82,8 @@ aside {
     display: flex;
     background-image: linear-gradient(45deg, LightSteelBlue, White);
     float: left;
-    padding: 30px 30px 30px 100px;
+    flex-direction: column;
+    padding: 30px 100px 30px 100px;
 }
 
 aside a:link {

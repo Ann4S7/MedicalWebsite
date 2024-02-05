@@ -4,11 +4,19 @@
 {% block title %}Create a patient account{% endblock %}
 
 {% block content %}
-    <div id="main-content">
+    <main>
         <form method="POST" class="form-group">
             {% csrf_token %}
             {{ register_form.as_p }}
             <button type="submit" class="btn btn-success">Register</button>
         </form>
-    </div>
+    </main>
+    <aside>
+        {% if user.is_active %}
+            <a href="{% url 'calendar' %}">Calendar</a>
+            <a href="{% url 'doctors' %}">Our team</a>
+        {% else %}
+            <a href="{% url 'doctors' %}">Our team</a>
+        {% endif %}
+    </aside>
 {% endblock %}

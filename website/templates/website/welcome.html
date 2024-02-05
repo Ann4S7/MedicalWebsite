@@ -30,13 +30,14 @@
             <br>
             <a href="{% url 'doctors' %}"><span style="font-size: 20px">Click here to meet our team!</span></a>
         {% endif %}
-        </main>
+    </main>
+    <aside>
         {% if user.is_active %}
-        <aside>
-            <a href="{% url 'doctors' %}"><span>Our team</span></a>
-            <a href="{% url 'calendar' %}"><span>Calendar</span></a>
-        </aside>
+            <a href="{% url 'calendar' %}">Calendar</a>
+            <a href="{% url 'doctors' %}">Our team</a>
+        {% else %}
+            <a href="{% url 'doctors' %}">Our team</a>
         {% endif %}
-    </div>
+    </aside>
 
 {% endblock %}

@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
 
-{% block title %}Unsuccessful registration{% endblock %}
+{% block title %}Unsuccessful reservation{% endblock %}
 
 {% block content %}
-    <div id="main-content">
+    <main>
         <p>The visit is not available currently.</p>
         <p>
             <a href="{% url 'welcome' %}">FIND ANOTHER VISIT</a>
         </p>
-    </div>
+    </main>
+    <aside>
+        {% if user.is_active %}
+            <a href="{% url 'calendar' %}">Calendar</a>
+            <a href="{% url 'doctors' %}">Our team</a>
+        {% else %}
+            <a href="{% url 'doctors' %}">Our team</a>
+        {% endif %}
+    </aside>
 {% endblock %}

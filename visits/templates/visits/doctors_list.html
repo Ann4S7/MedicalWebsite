@@ -3,26 +3,22 @@
 {% block title %}Doctors{% endblock %}
 
 {% block content %}
-    <div id="main-content">
-        <main id="main">
-            <h3>Our doctors:</h3>
-            <ul>
-                {% for doctor in doctors %}
-                    <li>
-                        {{doctor}}
-                    </li>
-                {% endfor %}
-            </ul>
-        </main>
+    <main>
+        <h3>Our doctors:</h3>
+        <ul>
+            {% for doctor in doctors %}
+                <li>
+                    {{doctor}}
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <aside>
         {% if user.is_active %}
-            <aside id="right-menu">
-                <a href="{% url 'doctors' %}">
-                    <span style="font-size: 20px; text-transform: uppercase;">Our team</span>
-                </a>
-                <a href="{% url 'calendar' %}">
-                    <span style="font-size: 20px; text-transform: uppercase;">Calendar</span>
-                </a>
-            </aside>
+            <a href="{% url 'calendar' %}">Calendar</a>
+            <a href="{% url 'doctors' %}">Our team</a>
+        {% else %}
+            <a href="{% url 'doctors' %}">Our team</a>
         {% endif %}
-    </div>
+    </aside>
 {% endblock %}
