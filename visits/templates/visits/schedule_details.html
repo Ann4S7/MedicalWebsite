@@ -17,9 +17,7 @@
     <aside>
         {% if user.is_active %}
             <a href="{% url 'calendar' %}">Calendar</a>
-            <a href="{% url 'doctors' %}">Our team</a>
-        {% else %}
-            <a href="{% url 'doctors' %}">Our team</a>
         {% endif %}
+        <a href="{% url 'doctors' %}">Our team</a>
     </aside>
 {% endblock %}
