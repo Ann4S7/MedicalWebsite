@@ -31,10 +31,4 @@
             <a href="{% url 'doctors' %}"><span style="font-size: 20px">Click here to meet our team!</span></a>
         {% endif %}
     </main>
-    <aside>
-        {% if user.is_active %}
-            <a href="{% url 'calendar' %}">Calendar</a>
-        {% endif %}
-        <a href="{% url 'doctors' %}">Our team</a>
-    </aside>
 {% endblock %}

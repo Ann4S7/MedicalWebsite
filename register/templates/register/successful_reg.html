@@ -10,10 +10,4 @@
             <a href="{% url 'welcome' %}">Home</a>
         </p>
     </main>
-    <aside>
-        {% if user.is_active %}
-            <a href="{% url 'calendar' %}">Calendar</a>
-        {% endif %}
-        <a href="{% url 'doctors' %}">Our team</a>
-    </aside>
 {% endblock %}

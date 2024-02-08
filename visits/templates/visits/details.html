@@ -14,10 +14,4 @@
             <p>Login to check the details.</p>
         {% endif %}
     </main>
-    <aside>
-        {% if user.is_active %}
-            <a href="{% url 'calendar' %}">Calendar</a>
-        {% endif %}
-        <a href="{% url 'doctors' %}">Our team</a>
-    </aside>
 {% endblock %}

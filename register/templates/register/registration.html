@@ -11,10 +11,4 @@
             <button type="submit" class="btn btn-success">Register</button>
         </form>
     </main>
-    <aside>
-        {% if user.is_active %}
-            <a href="{% url 'calendar' %}">Calendar</a>
-        {% endif %}
-        <a href="{% url 'doctors' %}">Our team</a>
-    </aside>
 {% endblock %}
