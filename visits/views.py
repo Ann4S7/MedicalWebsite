@@ -39,12 +39,12 @@ def calendar(request):
     context = {'form': VisitSearchForm}
 
     qs = Visit.objects.filter(past=False, patient=None)
-    # spec_query = request.GET.get('specialization')
+    spec_query = request.GET.get('specialization')
     doc_query = request.GET.get('doctor')
     loc_query = request.GET.get('location')
 
-    # if spec_query != "" and spec_query is not None:
-    #     qs = qs.filter(specialization=spec_query)
+    if spec_query != "" and spec_query is not None:
+        qs = qs.filter(doctor__specialization=spec_query)
     if doc_query != "" and doc_query is not None:
         qs = qs.filter(doctor=doc_query)
     if loc_query != "" and loc_query is not None:
