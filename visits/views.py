@@ -4,6 +4,8 @@ from visits.models import Visit, Doctor
 
 from datetime import datetime
 
+from visits.forms import VisitSearchForm
+
 
 def details(request, id):
     visit = get_object_or_404(Visit, pk=id)
@@ -34,8 +36,23 @@ def reservation(request, id):
 
 
 def calendar(request):
-    return render(request, "visits/calendar.html",
-                  {"visits_available": Visit.objects.filter(past=False, patient=None)})
+    context = {'form': VisitSearchForm}
+
+    qs = Visit.objects.filter(past=False, patient=None)
+    # spec_query = request.GET.get('specialization')
+    doc_query = request.GET.get('doctor')
+    loc_query = request.GET.get('location')
+
+    # if spec_query != "" and spec_query is not None:
+    #     qs = qs.filter(specialization=spec_query)
+    if doc_query != "" and doc_query is not None:
+        qs = qs.filter(doctor=doc_query)
+    if loc_query != "" and loc_query is not None:
+        qs = qs.filter(location=loc_query)
+
+    context['queryset'] = qs
+
+    return render(request, "visits/calendar.html", context)
 
 
 def schedule_details(request, id):

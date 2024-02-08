@@ -6,9 +6,14 @@
     <main>
         {% if user.is_active %}
             {% if visits_available_num != 0 %}
+                <form method = "GET">
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+                <br>
                 <h3>Visits</h3>
                 <ul>
-                    {% for visit in visits_available %}
+                    {% for visit in queryset %}
                         <li>
                             <a href="{% url 'details' visit.id %}">
                                 {{visit}}
