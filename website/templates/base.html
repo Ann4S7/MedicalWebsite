@@ -12,21 +12,27 @@
     <link rel="icon" type="image/png" href="{% static 'website/favicon.png' %}">
 </head>
 <body>
-    <header id="main-header">
-        <p>eClinic</p>
+    <header>
+        <p class="logo">eClinic</p>
         <p class="motto"><br>closer to you<br>&emsp;closer to health</p>
     </header>
     <nav>
         {% if user.is_active %}
-            <a href="{% url 'welcome' %}" class="main-A">Home</a> |
-            <a href="{% url 'logout' %}" class="main-A">Logout</a>
+            <a href="{% url 'welcome' %}">Home</a> |
+            <a href="{% url 'logout' %}">Logout</a>
         {% else %}
-            <a href="{% url 'welcome' %}" class="main-A">Home</a> |
-            <a href="{% url 'registration' %}" class="main-A">Register</a> |
-            <a href="{% url 'login' %}" class="main-A">Login</a>
+            <a href="{% url 'welcome' %}">Home</a> |
+            <a href="{% url 'registration' %}">Register</a> |
+            <a href="{% url 'login' %}">Login</a>
         {% endif %}
     </nav>
     {% block content %}
     {% endblock %}
+    <aside>
+        {% if user.is_active %}
+            <a href="{% url 'calendar' %}">Calendar</a>
+        {% endif %}
+        <a href="{% url 'doctors' %}">Our team</a>
+    </aside>
 </body>
 </html>

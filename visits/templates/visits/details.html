@@ -3,27 +3,15 @@
 {% block title %}Visits{% endblock %}
 
 {% block content %}
-    <div id="main-content">
-        <main id="main">
-            {% if user.is_active %}
-                <h2>{{visit.doctor}}</h2>
-                <p>
-                    The visit has been scheduled on {{visit.date}} at {{visit.start_time}} in <strong>{{visit.location}}</strong>
-                </p>
-                <a class="btn btn-primary" href="{% url 'reservation' visit.id %}">Reservation</a>
-            {% else %}
-                <p>Login to check the details.</p>
-            {% endif %}
-        </main>
+    <main>
         {% if user.is_active %}
-        <aside id="right-menu">
-            <a href="{% url 'doctors' %}">
-                <span style="font-size: 20px; text-transform: uppercase;">Our team</span>
-            </a>
-            <a href="{% url 'calendar' %}">
-                <span style="font-size: 20px; text-transform: uppercase;">Calendar</span>
-            </a>
-        </aside>
+            <h2>{{visit.doctor}}</h2>
+            <p>
+                The visit has been scheduled on {{visit.date}} at {{visit.start_time}} in <strong>{{visit.location}}</strong>
+            </p>
+            <a class="btn btn-primary" href="{% url 'reservation' visit.id %}">Reservation</a>
+        {% else %}
+            <p>Login to check the details.</p>
         {% endif %}
-    </div>
+    </main>
 {% endblock %}
