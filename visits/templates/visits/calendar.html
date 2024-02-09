@@ -5,13 +5,13 @@
 {% block content %}
     <main>
         {% if user.is_active %}
-            {% if visits_available_num != 0 %}
-                <form method = "GET">
-                    {{form.as_p}}
-                    <button type="submit" class="btn btn-success">Search</button>
-                </form>
-                <br>
-                <h3>Visits</h3>
+            <form method = "GET">
+                {{form.as_p}}
+                <button type="submit" class="btn btn-success">Search</button>
+            </form>
+            <br>
+            <h3>Visits</h3>
+            {% if queryset.count != 0 %}
                 <ul>
                     {% for visit in queryset %}
                         <li>
@@ -19,8 +19,10 @@
                                 {{visit}}
                             </a>
                         </li>
-                {% endfor %}
+                    {% endfor %}
                 </ul>
+            {% else %}
+                <p>No appointments available. Please change your search criteria or come back to us later.</p>
             {% endif %}
         {% endif %}
     </main>
