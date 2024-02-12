@@ -9,7 +9,8 @@ from visits.forms import VisitSearchForm
 
 def details(request, id):
     visit = get_object_or_404(Visit, pk=id)
-    return render(request, "visits/details.html", {"visit": visit})
+    context = {"visit": visit, "visits_patient_upcoming": Visit.objects.filter(past=False, patient=request.user)}
+    return render(request, "visits/details.html", context)
 
 
 def doctors_list(request):
