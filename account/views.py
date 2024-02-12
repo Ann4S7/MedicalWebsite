@@ -2,9 +2,20 @@ from django.shortcuts import redirect, render, reverse
 
 from django.http import HttpResponse
 
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 
 from django.contrib.auth import authenticate, login, logout
+
+
+def registration(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, "account/successful_reg.html")
+        else:
+            return render(request, "account/unsuccessful_reg.html")
+    return render(request, "account/registration.html", {"register_form": RegisterForm})
 
 
 def logging_in(request):
