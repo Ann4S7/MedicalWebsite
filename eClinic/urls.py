@@ -22,7 +22,6 @@ from website.views import welcome
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome, name="welcome"),
-    path('visits/', include('visits.urls')),
-    path('', include('register.urls')),
+    path('', include('visits.urls')),
     path('', include('account.urls'))
 ]

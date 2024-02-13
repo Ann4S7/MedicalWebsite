@@ -17,7 +17,7 @@
                 <ul>
                     {% for visit in visits_patient_upcoming %}
                         <li>
-                            <a href="{% url 'schedule_details' visit.id %}">{{visit}}</a>
+                            <a href="{% url 'details' visit.id %}">{{visit}}</a>
                         </li>
                     {% endfor %}
                 </ul>
