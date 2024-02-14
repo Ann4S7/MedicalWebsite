@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+#bez tego tagu nie wyświetla image
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <main>
+        {% if user.is_active %}
+            <h3>History of your doctor visits</h3>
+            {% if visits_patient_history.count != 0 %}
+                <ul>
+                    {% for visit in visits_patient_history %}
+                        <li>
+                            <a href="{% url 'details' visit.id %}">{{visit}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You haven't had any doctor visits in our clinic yet.</p>
+            {% endif %}
+        {% endif %}
+    </main>
+{% endblock %}

@@ -2,27 +2,21 @@ from django.shortcuts import get_object_or_404, redirect, render, reverse, HttpR
 
 from visits.models import Visit, Doctor
 
-from datetime import datetime
+from website.views import out_of_date
 
 from visits.forms import VisitSearchForm
 
 
 def details(request, id):
     visit = get_object_or_404(Visit, pk=id)
-    context = {"visit": visit, "visits_patient_upcoming": Visit.objects.filter(past=False, patient=request.user)}
+    context = {"visit": visit, "visits_patient_upcoming": Visit.objects.filter(past=False, patient=request.user),
+               "visits_available": Visit.objects.filter(past=False, patient=None)}
     return render(request, "visits/details.html", context)
 
 
 def doctors_list(request):
     return render(request, "visits/doctors_list.html",
                   {"doctors": Doctor.objects.all()})
-
-
-def out_of_date(visit):
-    visit_datetime = datetime.combine(visit.date, visit.start_time)
-    if visit_datetime < datetime.now():
-        visit.past = True
-        visit.save()
 
 
 def reservation(request, id):
@@ -54,11 +48,6 @@ def calendar(request):
     context['queryset'] = qs
 
     return render(request, "visits/calendar.html", context)
-
-
-def schedule_details(request, id):
-    visit = get_object_or_404(Visit, pk=id)
-    return render(request, "visits/schedule_details.html", {"visit": visit})
 
 
 def cancel_visit(request, id):

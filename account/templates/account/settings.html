@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+#bez tego tagu nie wyświetla image
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <main>
+        {% if user.is_active %}
+            <h3>Site under construction</h3>
+        {% endif %}
+    </main>
+{% endblock %}
