@@ -6,6 +6,8 @@ from datetime import datetime
 
 from visits.forms import VisitSearchForm
 
+from django.contrib import messages
+
 
 def details(request, id):
     visit = get_object_or_404(Visit, pk=id)
@@ -23,17 +25,6 @@ def out_of_date(visit):
     if visit_datetime < datetime.now():
         visit.past = True
         visit.save()
-
-
-def reservation(request, id):
-    visit = get_object_or_404(Visit, pk=id)
-    out_of_date(visit)
-    if visit.patient is None:
-        visit.patient = request.user
-        visit.save()
-        return redirect(reverse('welcome'))
-    else:
-        return render(request, "visits/unavailable_visit.html")
 
 
 def calendar(request):
@@ -54,6 +45,18 @@ def calendar(request):
     context['queryset'] = qs
 
     return render(request, "visits/calendar.html", context)
+
+
+def reservation(request, id):
+    visit = get_object_or_404(Visit, pk=id)
+    out_of_date(visit)
+    if visit.patient is None:
+        visit.patient = request.user
+        visit.save()
+        return redirect(reverse('welcome'))
+    else:
+        messages.warning(request, "That visit is not available currently.")
+    return redirect(reverse('calendar'))
 
 
 def schedule_details(request, id):

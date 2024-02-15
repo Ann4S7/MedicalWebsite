@@ -1,10 +1,10 @@
 from django.shortcuts import redirect, render, reverse
 
-from django.http import HttpResponse
-
 from .forms import LoginForm, RegisterForm
 
 from django.contrib.auth import authenticate, login, logout
+
+from django.contrib import messages
 
 
 def registration(request):
@@ -12,9 +12,9 @@ def registration(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, "account/successful_reg.html")
+            messages.success(request, "Registration passed.")
         else:
-            return render(request, "account/unsuccessful_reg.html")
+            messages.error(request, "Registration failed.")
     return render(request, "account/registration.html", {"register_form": RegisterForm})
 
 
@@ -29,8 +29,7 @@ def logging_in(request):
                 login(request, user)
                 return redirect(reverse('welcome'))
             else:
-                return HttpResponse('disabled account')
-    # return render_to_response('login.html', form, RequestContext)
+                messages.error(request, "Invalid login credentials.")
     return render(request, "account/login.html", {"login_form": LoginForm})
 
 

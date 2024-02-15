@@ -114,3 +114,7 @@ aside a:active {
     font-size: 20px;
     text-transform: uppercase;
 }
+
+.alert {
+    display: inline-block;
+}
