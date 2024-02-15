@@ -7,6 +7,9 @@
     <main>
         <form method="POST" class="form-group">
             {% csrf_token %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert" > {{ message }} </div>
+            {% endfor %}
             {{ register_form.as_p }}
             <button type="submit" class="btn btn-success">Register</button>
         </form>

@@ -6,6 +6,9 @@
     <main>
         {% if user.is_active %}
             <form method = "GET">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert" > {{ message }} </div>
+            {% endfor %}
                 {{form.as_p}}
                 <button type="submit" class="btn btn-success">Search</button>
             </form>
