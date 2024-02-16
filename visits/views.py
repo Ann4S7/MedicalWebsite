@@ -9,8 +9,11 @@ from visits.forms import VisitSearchForm
 
 def details(request, id):
     visit = get_object_or_404(Visit, pk=id)
-    context = {"visit": visit, "visits_patient_upcoming": Visit.objects.filter(past=False, patient=request.user),
-               "visits_available": Visit.objects.filter(past=False, patient=None)}
+    context = {
+        "visit": visit,
+        "visits_patient_upcoming": Visit.objects.filter(past=False, patient=request.user),
+        "visits_available": Visit.objects.filter(past=False, patient=None)
+    }
     return render(request, "visits/details.html", context)
 
 
