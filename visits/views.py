@@ -34,6 +34,9 @@ def reservation(request, id):
 
 
 def calendar(request):
+    for visit in Visit.objects.filter(past=False):
+        out_of_date(visit)
+
     context = {'form': VisitSearchForm}
 
     qs = Visit.objects.filter(past=False, patient=None)

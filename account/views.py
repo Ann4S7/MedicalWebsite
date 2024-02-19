@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate, login, logout
 
 from visits.models import Visit
 
+from website.views import out_of_date
+
 
 def registration(request):
     if request.method == 'POST':
@@ -42,6 +44,9 @@ def logging_out(request):
 
 
 def history(request):
+    for visit in Visit.objects.filter(past=False):
+        out_of_date(visit)
+
     context = {}
     if request.user.is_active:
         context["visits_patient_history"] = Visit.objects.filter(past=True, patient=request.user)
