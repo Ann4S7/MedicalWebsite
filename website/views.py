@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 def welcome(request):
-    for visit in Visit.objects.all():
+    for visit in Visit.objects.filter(past=False):
         out_of_date(visit)
 
     context = {}

@@ -9,10 +9,10 @@
             <p>
                 The visit has been scheduled on {{visit.date}} at {{visit.start_time}} in <strong>{{visit.location}}</strong>
             </p>
-            {% if visit in visits_patient_upcoming %}
-                <a class="btn btn-primary" href="{% url 'cancel' visit.id %}">Cancel</a>
-            {% else %}
+            {% if visit in visits_available %}
                 <a class="btn btn-primary" href="{% url 'reservation' visit.id %}">Reservation</a>
+            {% elif visit in visits_patient_upcoming %}
+                <a class="btn btn-primary" href="{% url 'cancel' visit.id %}">Cancel</a>
             {% endif %}
         {% else %}
             <p>Login to check the details.</p>
